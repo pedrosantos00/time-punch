@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/services/api.service';
 import { AuthService } from 'src/app/services/services/auth.service';
+import { UserStoreService } from 'src/app/services/services/user-store.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,8 +11,8 @@ import { AuthService } from 'src/app/services/services/auth.service';
 export class DashboardComponent implements OnInit{
 
   public users: any = [];
-
-  constructor(private auth : AuthService , private api: ApiService){
+  public fullName : string = "";
+  constructor(private auth : AuthService , private api: ApiService, private userCompany : UserStoreService){
 
   }
 
@@ -22,6 +23,13 @@ export class DashboardComponent implements OnInit{
     this.api.getUsers()
     .subscribe(res =>{
       this.users = res;
+    });
+
+
+    this.userCompany.getFullNameFromCompany()
+    .subscribe(val =>{
+      let FullnameFromToken = this.auth.getFullNameFromToken();
+      this.fullName = val || FullnameFromToken
     })
   }
 
