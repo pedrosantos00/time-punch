@@ -63,7 +63,7 @@ ngOnInit(): void
           },
             error:(err)=>{
               console.log(err);
-              this.toast.error({detail:"ERROR",summary:"User or password incorret", duration:5000});
+              this.toast.error({detail:"ERROR",summary:err?.message, duration:5000});
             }
           })
       }

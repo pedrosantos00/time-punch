@@ -35,7 +35,7 @@
                     <!-- EMAIL INPUT -->
                 <div class="form-group pt-3">
                   <div class="input-field"  [class.error]="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">
-                      <span class="fa fa-user p-2"></span>
+                      <span class="fa fa-envelope p-2"></span>
                       <small *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')" class="text-danger">*</small>
                       <input formControlName="email" type="text" placeholder="Email">
                   </div>
@@ -64,13 +64,12 @@
               </div>
         </form>
     </div>
-                  <!-- <div class="mx-3 my-2 py-2 bordert">
-                    <div class="text-center py-3">
-                      <a href="https://www.facebook.com" target="blank" class="px-2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png" alt="" srcset=""></a>
-                      <a href="https://www.google.com" target="blank" class="px-2"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8mapLeJGyEg2h_zJgntJqVs0XL9ecDk_JNWKRkLUIMQ&s" alt="" srcset=""></a>
-                      <a href="https://www.github.com" target="blank" class="px-2"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" srcset=""></a>
-                    </div>
-                  </div> -->
+    <div class="mx-3 my-2 py-2 bordert">
+      <div class="text-center py-3">
+        <div class="text-center pt-4 text-muted">Return to <a id="forget" routerLink="/">MainPage</a>
+        </div>
+      </div>
+    </div>
               </div>
           </div>
       </div>
