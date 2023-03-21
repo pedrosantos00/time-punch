@@ -4,6 +4,9 @@ import {  Router } from '@angular/router';
 import {  NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/services/auth.service';
 import { UserStoreService } from 'src/app/services/services/user-store.service';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ResetPasswordService } from 'src/app/services/reset-password.service';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +20,17 @@ istText : boolean = false;
 eyeIcon : string = "fa-eye-slash"
 loginForm!: FormGroup;
 
+public resetPasswordEmail!: string;
+public isValidEmail!: boolean;
+
+
 constructor(
   private fb:FormBuilder,
    private auth : AuthService,
    private router : Router ,
    private toast: NgToastService,
-   private userCompany : UserStoreService
+   private userCompany : UserStoreService,
+   private resetService : ResetPasswordService
    )
 {
 
@@ -89,6 +97,37 @@ ngOnInit(): void
       }
     })
   }
+
+  checkValidEmail(event:string){
+    const value = event;
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    this.isValidEmail = pattern.test(value);
+    return this.isValidEmail;
+  }
+
+  confirmToSend(){
+    if(this.checkValidEmail(this.resetPasswordEmail)){
+      console.log(this.resetPasswordEmail);
+
+          //API CALL
+          this.resetService.sendResetPasswordLink(this.resetPasswordEmail)
+          .subscribe({
+            next:(res) => {
+              this.toast.success({detail:"SUCCESS",summary:res.message, duration:5000});
+              this.resetPasswordEmail = "";
+              const buttonRef = document.getElementById("closeBtn");
+              buttonRef?.click();
+            },
+            error:(err) => {
+              this.toast.error({detail:"ERROR",summary:err?.message, duration:5000});
+            }
+          })
+    }
+  }
+
 }
+
+
+
 
 

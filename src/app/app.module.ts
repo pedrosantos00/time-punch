@@ -11,6 +11,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { FormsModule } from '@angular/forms';
+import { ResetComponent } from './components/reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +20,19 @@ import { MainPageComponent } from './components/main-page/main-page.component';
     LoginComponent,
     SignupComponent,
     DashboardComponent,
-    MainPageComponent
+    MainPageComponent,
+    ResetComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgToastModule
+    NgToastModule,
+    FormsModule
   ],
+
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
