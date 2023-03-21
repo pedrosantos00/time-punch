@@ -24,17 +24,16 @@
                             </div>
                             <small  *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="text-danger" class="text-danger">*Password is required</small>
                             <div class="form-inline fr mt-4">
-                                <a id="forget" class="font-weight-bold">Forget Password?</a>
+                                <a id="forget" data-bs-toggle="modal" data-bs-target="@exampleModal" class="font-weight-bold">Forgot Password?</a>
                             </div>
                             <button (click)="onLogin()" type="submit" class="btn btn-primary btn-block mt-4 w-100">Login</button>
                             <div class="text-center pt-4 text-muted">Don't have account? <a id="forget" routerLink="/signup">Signup</a>
                             </div>
                         </form>
                     </div>
-                    <div class="mx-3 my-2 py-2 bordert">
-                      <div class="text-center py-3">
+                    <!-- <div class="mx-3 my-2 py-2 bordert"> -->
                         <div class="text-center pt-4 text-muted">Return to <a id="forget" routerLink="/">MainPage</a>
-                      </div>
+                      <!-- </div> -->
                     </div>
                 </div>
             </div>

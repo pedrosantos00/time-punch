@@ -54,7 +54,8 @@ ngOnInit(): void
             next: (res) =>{
             console.log(res.message);
             this.loginForm.reset();
-            this.auth.storeToken(res.token);
+            this.auth.storeToken(res.acessToken);
+            this.auth.storeRefreshToken(res.refreshToken);
             const tokenPayload = this.auth.decodedToken();
             this.userCompany.setFullNameForCompany(tokenPayload.unique_name);
             this.userCompany.setRoleForCompany(tokenPayload.role);
@@ -70,8 +71,7 @@ ngOnInit(): void
     else
       {
         this.validateAllFormFields(this.loginForm);
-        console.log("Form is not valid");
-        alert("form invalid")
+        this.toast.error({detail:"ERROR",summary:"Fill all the required data", duration:5000});
       }
   }
 

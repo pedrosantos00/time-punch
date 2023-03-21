@@ -58,7 +58,7 @@ export class SignupComponent implements OnInit{
       else
         {
           this.validateAllFormFields(this.signupForm);
-          console.log("Form is not valid");
+          this.toast.error({detail:"ERROR",summary:"Fill all the required data", duration:5000});
           }
 
     }
